@@ -8,6 +8,12 @@ const theme = createMuiTheme({
     secondary: fullWhite
   },
   overrides: {
+  },
+  card: {
+    margin: '2em'
+  },
+  cardContent: {
+    padding: '1em'
   }
 })
 
