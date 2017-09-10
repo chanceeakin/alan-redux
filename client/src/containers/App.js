@@ -3,53 +3,62 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router'
+
 import {withTheme, withStyles} from 'material-ui/styles'
-import logo from './logo.svg'
 import Typography from 'material-ui/Typography'
 import Dialog, {
   DialogTitle
 } from 'material-ui/Dialog'
-import Button from 'material-ui/Button'
 
 import {
   showDialog,
-  hideDialog
+  hideDialog,
+  hideDrawer,
+  showDrawer
 } from './../actions/app'
+import AppBar from './../components/AppBar'
+import Drawer from './../components/Drawer'
+import Routes from './../routes'
+import Footer from './../components/Footer'
 
 const mapStateToProps = state => ({
-  isDialogOpen: state.app.isDialogOpen
+  isDialogOpen: state.app.isDialogOpen,
+  isDrawerOpen: state.app.isDrawerOpen
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   showDialog,
-  hideDialog
+  hideDialog,
+  hideDrawer,
+  showDrawer
 }, dispatch)
 
 const styles = theme => ({
+  '@global': {
+    html: {
+      height: '100%',
+      fontFamily: 'Roboto, Arial, Helvetica, sans-serif'
+    },
+    body: {
+      margin: 0,
+      padding: 0
+    }
+  },
   app: {
-    textAlign: 'center'
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 0,
+    justifyContent: 'space-between',
+    minHeight: '100vh'
   },
   logo: {
     animation: 'spin infinite 20s linear',
     height: '80px'
   },
-  header: {
-    height: '150px',
-    padding: '20px'
-  },
-  intro: {
-    fontSize: 'large'
-  },
-  button: {
-    margin: '1em'
-  },
-  '@keyframes spin': {
-    from: {
-      transform: 'rotate(0deg)'
-    },
-    to: {
-      transform: 'rotate(360deg)'
-    }
+  container: {
+    marginTop: '64px',
+    flex: '1'
   }
 })
 
@@ -62,14 +71,23 @@ export default class App extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     isDialogOpen: PropTypes.bool.isRequired,
-    showDialog: PropTypes.func.isRequired,
-    hideDialog: PropTypes.func.isRequired
+    hideDialog: PropTypes.func.isRequired,
+    isDrawerOpen: PropTypes.bool.isRequired,
+    showDrawer: PropTypes.func.isRequired,
+    hideDrawer: PropTypes.func.isRequired
   }
 
   render () {
     const {classes} = this.props
     return (
       <div className={classes.app}>
+        <AppBar
+          showDrawer={this.props.showDrawer}
+        />
+        <Drawer
+          open={this.props.isDrawerOpen}
+          handleClose={this.props.hideDrawer}
+        />
         <Dialog
           open={this.props.isDialogOpen}
           onRequestClose={this.props.hideDialog}
@@ -78,21 +96,10 @@ export default class App extends Component {
             <Typography type='display2'>Dialog!</Typography>
           </DialogTitle>
         </Dialog>
-        <div className={classes.header}>
-          <img src={logo} className={classes.logo} alt='logo' />
-          <Typography type='display2'>Welcome to React</Typography>
+        <div className={classes.container}>
+          <Routes />
         </div>
-        <Button
-          raised
-          className={classes.button}
-          color='primary'
-          onTouchTap={() => this.props.showDialog()}
-        >
-          Click me!
-        </Button>
-        <Typography className={classes.intro}>
-          If you can't tell how to get started from all the breadcrumbs, IDK what to tell you.
-        </Typography>
+        <Footer />
       </div>
     )
   }

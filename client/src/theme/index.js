@@ -1,11 +1,13 @@
 import 'typeface-roboto'
 import {createMuiTheme} from 'material-ui/styles'
-import {cyan, fullWhite} from 'material-ui/colors'
+import {blueGrey, fullWhite} from 'material-ui/colors'
 
 const theme = createMuiTheme({
   palette: {
-    primary: cyan,
+    primary: blueGrey,
     secondary: fullWhite
+  },
+  overrides: {
   }
 })
 
