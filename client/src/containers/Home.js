@@ -4,8 +4,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router'
 
+import Grid from 'material-ui/Grid'
 import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
+import Card from 'material-ui/Card'
 import Button from 'material-ui/Button'
 import Camels from './../constants/images/camels.jpg'
 
@@ -30,14 +32,17 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const styles = theme => ({
   root: {
+
+  },
+  hero: {
     background: `url(${Camels}) ${theme.palette.primary[50]}`,
     backgroundSize: 'cover',
+    minHeight: '75vh',
+    alignItems: 'center',
+    justifyContent: 'space-around',
     textAlign: 'center',
     display: 'flex',
-    minHeight: '75vh',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-around'
+    flexDirection: 'column'
   },
   header: {
     maxHeight: '100vh'
@@ -64,22 +69,32 @@ export default class Home extends Component {
   render () {
     const {classes} = this.props
     return (
-      <div className={classes.root}>
-        <div className={classes.header}>
-          <Typography type='display4' color='default'>Human Geography</Typography>
-        </div>
-        <Button
-          raised
-          className={classes.button}
-          color='primary'
-          onTouchTap={() => this.props.showDialog()}
-        >
-          Click me!
-        </Button>
-        <Typography className={classes.intro} color='default'>
-          If you can't tell how to get started from all the breadcrumbs, IDK what to tell you.
-        </Typography>
-      </div>
+      <Grid container className={classes.root}>
+        <Grid item xs={12} className={classes.hero}>
+          <div className={classes.header}>
+            <Typography type='display4' color='secondary'>Human Geography</Typography>
+          </div>
+          <Button
+            raised
+            className={classes.button}
+            color='primary'
+            onTouchTap={() => this.props.showDialog()}
+          >
+            Click me!
+          </Button>
+          <Typography className={classes.intro} color='default'>
+            If you can't tell how to get started from all the breadcrumbs, IDK what to tell you.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography type='display2'>Mr. Cardon's AP Human Geography</Typography>
+          <Grid>
+            <Grid item xs={12}>
+              <Card />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     )
   }
 }
