@@ -1,11 +1,15 @@
 import 'typeface-roboto'
 import {createMuiTheme} from 'material-ui/styles'
-import {blueGrey, fullWhite} from 'material-ui/colors'
+import {blueGrey, lightBlue} from 'material-ui/colors'
 
 const theme = createMuiTheme({
   palette: {
     primary: blueGrey,
-    secondary: fullWhite
+    secondary: lightBlue,
+    type: 'light'
+  },
+  customColors: {
+    footerText: '#fdfdfd'
   },
   overrides: {
   },

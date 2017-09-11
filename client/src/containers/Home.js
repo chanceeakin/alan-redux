@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {withRouter} from 'react-router'
+import Scroll from 'react-scroll'
 
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
@@ -28,6 +29,11 @@ const mapStateToProps = state => ({
   isDrawerOpen: state.app.isDrawerOpen
 })
 
+const Link = Scroll.Link
+const Element = Scroll.Element
+const Events = Scroll.Events
+const scrollSpy = Scroll.scrollSpy
+
 const mapDispatchToProps = dispatch => bindActionCreators({
   showDialog,
   hideDialog,
@@ -42,7 +48,7 @@ const styles = theme => ({
   hero: {
     background: `url(${Camels}) ${theme.palette.primary[50]}`,
     backgroundSize: 'cover',
-    minHeight: '75vh',
+    minHeight: '100vh',
     alignItems: 'center',
     justifyContent: 'space-around',
     textAlign: 'center',
@@ -65,13 +71,15 @@ const styles = theme => ({
   actionHeader: {
     padding: '1em'
   },
+  element: {
+  },
   card: theme.card,
   tripleCard: {
     margin: '0 2em 2em'
   },
   cardContent: {
     padding: '1em',
-    minHeight: '216px'
+    minHeight: '236px'
   },
   contentText: {
     padding: '1em',
@@ -79,6 +87,7 @@ const styles = theme => ({
   },
   icon: {
     padding: '2em',
+    color: theme.palette.text.secondary,
     width: '64px',
     height: '64px'
   }
@@ -91,8 +100,20 @@ const styles = theme => ({
 export default class Home extends Component {
   static displayName = 'Home'
   static propTypes = {
-    classes: PropTypes.object.isRequired,
-    showDialog: PropTypes.func.isRequired
+    classes: PropTypes.object.isRequired
+    // showDialog: PropTypes.func.isRequired
+  }
+
+  componentDidMount () {
+    Events.scrollEvent.register('begin')
+
+    Events.scrollEvent.register('end')
+    scrollSpy.update()
+  }
+
+  componentWillUnmount () {
+    Events.scrollEvent.remove('begin')
+    Events.scrollEvent.remove('end')
   }
 
   render () {
@@ -106,36 +127,46 @@ export default class Home extends Component {
           <Button
             raised
             className={classes.button}
-            color='primary'
-            onTouchTap={() => this.props.showDialog()}
+            color='accent'
           >
-            Click me!
+            <Link
+              activeClass='active'
+              to='test1'
+              spy
+              smooth
+              offset={-10}
+              duration={500}
+            >
+              Enter
+            </Link>
+
           </Button>
         </Grid>
         <Grid item xs={12}>
+          <Element name='test1' className={classes.element} />
           <Paper className={classes.paper}>
             <Typography className={classes.actionHeader} type='display2'>Mr. Cardon's AP Human Geography</Typography>
-            <Grid container direction='row-wrap'>
+            <Grid container direction='row'>
               <Grid item xs={12}>
                 <Card className={classes.card}>
                   <CardContent className={classes.cardContent}>
                     <Typography
                       className={classes.contentText}
-                      type='p'
+                      type='body1'
                     >
-                      Your 2017-2018 Guide to all things AP Human Geography. Follow the links to find study guides, course materials, test and exam preparation, and more. I'm excted to be your guide on this journey that shows us how we arrived where we are today. Human Geography is all around you.
+                        Your 2017-2018 Guide to all things AP Human Geography. Follow the links to find study guides, course materials, test and exam preparation, and more. I'm excted to be your guide on this journey that shows us how we arrived where we are today. Human Geography is all around you.
                     </Typography>
                     <Typography
                       className={classes.contentText}
-                      type='p'
+                      type='body1'
                     >
-                      If you have any questions, please email me.
+                        If you have any questions, please email me.
                     </Typography>
                     <iframe src='https://www.youtube.com/embed/naK9_JkFAOk' frameBorder='0' allowFullScreen='' />
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={6} lg={3}>
+              <Grid item xs={12} md={6} lg>
                 <Card className={classes.tripleCard}>
                   <CardContent className={classes.cardContent}>
                     <Typography type='title'>Quizzes</Typography>
@@ -145,17 +176,17 @@ export default class Home extends Component {
                     <Button
                       href='http://lizardpoint.com/geography/world-countries-quiz.php'
                     >
-                      Country Quiz
+                        Country Quiz
                     </Button>
                     <Button
                       href='https://www.quia.com/shared/geography/'
                     >
-                      Geography Games
+                        Geography Games
                     </Button>
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={6} lg={3}>
+              <Grid item xs={12} md={6} lg>
                 <Card className={classes.tripleCard}>
                   <CardContent className={classes.cardContent}>
                     <Typography type='title'>AP Test Information</Typography>
@@ -168,12 +199,12 @@ export default class Home extends Component {
                     <Button
                       href='https://apscore.collegeboard.org/scores?ep_ch=PR&ep_mid=11242583&ep_rid=177437514'
                     >
-                      Get Your Score
+                        Get Your Score
                     </Button>
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={6} lg={3}>
+              <Grid item xs={12} md={6} lg>
                 <Card className={classes.tripleCard}>
                   <CardContent className={classes.cardContent}>
                     <Typography type='title'>Helpful Links</Typography>
@@ -183,22 +214,22 @@ export default class Home extends Component {
                     <Button
                       href='http://www.pearsonmylabandmastering.com/northamerica/masteringgeography/'
                     >
-                      Online Textbook
+                        Online Textbook
                     </Button>
                     <Button
                       href='https://apstudent.collegeboard.org/apcourse/ap-human-geography'
                     >
-                      Collegeboard Review
+                        Collegeboard Review
                     </Button>
                     <Button
                       href='https://focus.pfisd.net/focus/'
                     >
-                      PFISD Focus
+                        PFISD Focus
                     </Button>
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={12} md={6} lg={3}>
+              <Grid item xs={12} md={6} lg>
                 <Card className={classes.tripleCard}>
                   <CardContent className={classes.cardContent}>
                     <Typography type='title'>Vocabulary</Typography>
@@ -208,7 +239,7 @@ export default class Home extends Component {
                     <Button
                       href='https://quizizz.com/join/'
                     >
-                      Vocab Quizzes
+                        Vocab Quizzes
                     </Button>
                   </CardActions>
                 </Card>

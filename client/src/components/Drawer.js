@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Drawer from 'material-ui/Drawer'
-// import Button from 'material-ui/Button'
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import ActionHome from 'material-ui-icons/Home'
+import CalendarIcon from 'material-ui-icons/DateRange'
 import Typography from 'material-ui/Typography'
 import {withStyles} from 'material-ui/styles'
 
@@ -33,11 +33,17 @@ function DrawerComponent (props) {
       <Typography className={classes.header} type='display1'>Menu</Typography>
       <Divider />
       <List>
-        <ListItem>
+        <ListItem onTouchTap={() => props.homePage()}>
           <ListItemIcon>
             <ActionHome />
           </ListItemIcon>
           <ListItemText primary='Home' />
+        </ListItem>
+        <ListItem onTouchTap={() => props.calendarPage()}>
+          <ListItemIcon>
+            <CalendarIcon />
+          </ListItemIcon>
+          <ListItemText primary='Calendar' />
         </ListItem>
       </List>
     </Drawer>
@@ -48,7 +54,9 @@ DrawerComponent.displayName = 'Drawer-Component'
 DrawerComponent.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  homePage: PropTypes.func.isRequired,
+  calendarPage: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(DrawerComponent)
