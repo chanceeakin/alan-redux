@@ -6,6 +6,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List'
 import Divider from 'material-ui/Divider'
 import ActionHome from 'material-ui-icons/Home'
 import CalendarIcon from 'material-ui-icons/DateRange'
+import DescriptionIcon from 'material-ui-icons/Description'
 import Typography from 'material-ui/Typography'
 import {withStyles} from 'material-ui/styles'
 
@@ -45,6 +46,13 @@ function DrawerComponent (props) {
           </ListItemIcon>
           <ListItemText primary='Calendar' />
         </ListItem>
+        <ListItem onTouchTap={() => props.resourcePage()}>
+          <ListItemIcon>
+            <DescriptionIcon />
+          </ListItemIcon>
+          <ListItemText primary='Resources' />
+        </ListItem>
+        <Divider />
       </List>
     </Drawer>
   )
@@ -56,7 +64,8 @@ DrawerComponent.propTypes = {
   open: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   homePage: PropTypes.func.isRequired,
-  calendarPage: PropTypes.func.isRequired
+  calendarPage: PropTypes.func.isRequired,
+  resourcePage: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(DrawerComponent)

@@ -5,6 +5,7 @@ import asyncComponent from './../components/Async-Component'
 
 const Home = asyncComponent(() => import('./../containers/Home'))
 const Calendar = asyncComponent(() => import('./../containers/Calendar'))
+const Resources = asyncComponent(() => import('./../containers/Resources'))
 
 const Routes = ({match, childProps}) => (
   <Switch>
@@ -16,6 +17,10 @@ const Routes = ({match, childProps}) => (
     <Route
       path={'/calendar'}
       component={Calendar}
+    />
+    <Route
+      path={'/resources'}
+      component={Resources}
     />
   </Switch>
 )

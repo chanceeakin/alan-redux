@@ -21,3 +21,12 @@ export const calendarPage = () => {
     dispatch(push('/calendar'))
   }
 }
+
+export const resourcePage = () => {
+  return dispatch => {
+    dispatch({
+      type: PUSH_PAGE
+    })
+    dispatch(push('/resources'))
+  }
+}

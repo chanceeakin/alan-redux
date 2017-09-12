@@ -18,7 +18,8 @@ import {
 } from './../actions/app'
 import {
   homePage,
-  calendarPage
+  calendarPage,
+  resourcePage
 } from './../actions/nav.js'
 import AppBar from './../components/AppBar'
 import Drawer from './../components/Drawer'
@@ -36,7 +37,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   hideDrawer,
   showDrawer,
   homePage,
-  calendarPage
+  calendarPage,
+  resourcePage
 }, dispatch)
 
 const styles = theme => ({
@@ -82,7 +84,8 @@ export default class App extends Component {
     showDrawer: PropTypes.func.isRequired,
     hideDrawer: PropTypes.func.isRequired,
     homePage: PropTypes.func.isRequired,
-    calendarPage: PropTypes.func.isRequired
+    calendarPage: PropTypes.func.isRequired,
+    resourcePage: PropTypes.func.isRequired
   }
 
   render () {
@@ -97,6 +100,7 @@ export default class App extends Component {
           handleClose={this.props.hideDrawer}
           homePage={this.props.homePage}
           calendarPage={this.props.calendarPage}
+          resourcePage={this.props.resourcePage}
         />
         <Dialog
           open={this.props.isDialogOpen}
