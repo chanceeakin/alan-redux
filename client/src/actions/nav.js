@@ -3,6 +3,7 @@ import {
 } from './../constants/action-types'
 
 import { push } from 'react-router-redux'
+import {changeContent} from './app'
 
 export const homePage = () => {
   return dispatch => {
@@ -28,5 +29,15 @@ export const resourcePage = () => {
       type: PUSH_PAGE
     })
     dispatch(push('/resources'))
+  }
+}
+
+export const contentPage = payload => {
+  return dispatch => {
+    dispatch({
+      type: PUSH_PAGE
+    })
+    dispatch(changeContent(payload))
+    dispatch(push(`/content/${payload}`))
   }
 }

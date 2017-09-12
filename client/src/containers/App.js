@@ -14,12 +14,14 @@ import {
   showDialog,
   hideDialog,
   hideDrawer,
-  showDrawer
+  showDrawer,
+  toggleCollapse
 } from './../actions/app'
 import {
   homePage,
   calendarPage,
-  resourcePage
+  resourcePage,
+  contentPage
 } from './../actions/nav.js'
 import AppBar from './../components/AppBar'
 import Drawer from './../components/Drawer'
@@ -28,7 +30,9 @@ import Footer from './../components/Footer'
 
 const mapStateToProps = state => ({
   isDialogOpen: state.app.isDialogOpen,
-  isDrawerOpen: state.app.isDrawerOpen
+  isDrawerOpen: state.app.isDrawerOpen,
+  collapsed: state.app.collapsed,
+  title: state.app.title
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -38,7 +42,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   showDrawer,
   homePage,
   calendarPage,
-  resourcePage
+  resourcePage,
+  toggleCollapse,
+  contentPage
 }, dispatch)
 
 const styles = theme => ({
@@ -85,7 +91,10 @@ export default class App extends Component {
     hideDrawer: PropTypes.func.isRequired,
     homePage: PropTypes.func.isRequired,
     calendarPage: PropTypes.func.isRequired,
-    resourcePage: PropTypes.func.isRequired
+    resourcePage: PropTypes.func.isRequired,
+    toggleCollapse: PropTypes.func.isRequired,
+    collapsed: PropTypes.bool.isRequired,
+    contentPage: PropTypes.func.isRequired
   }
 
   render () {
@@ -101,6 +110,9 @@ export default class App extends Component {
           homePage={this.props.homePage}
           calendarPage={this.props.calendarPage}
           resourcePage={this.props.resourcePage}
+          handleCollapse={this.props.toggleCollapse}
+          collapsed={this.props.collapsed}
+          contentPage={this.props.contentPage}
         />
         <Dialog
           open={this.props.isDialogOpen}

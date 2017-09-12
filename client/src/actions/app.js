@@ -3,7 +3,9 @@ import {
   DIALOG_SHOW,
   TOGGLE_DRAWER,
   SHOW_DRAWER,
-  HIDE_DRAWER
+  HIDE_DRAWER,
+  CONTENT_CHANGE,
+  TOGGLE_COLLAPSE
 } from './../constants/action-types'
 
 export const showDialog = () => {
@@ -42,6 +44,23 @@ export const hideDrawer = () => {
   return dispatch => {
     dispatch({
       type: HIDE_DRAWER
+    })
+  }
+}
+
+export const changeContent = payload => {
+  return dispatch => {
+    dispatch({
+      type: CONTENT_CHANGE,
+      payload
+    })
+  }
+}
+
+export const toggleCollapse = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_COLLAPSE
     })
   }
 }
