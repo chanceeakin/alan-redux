@@ -5,14 +5,21 @@ import {
   HIDE_DRAWER,
   SHOW_DRAWER,
   TOGGLE_COLLAPSE,
-  CONTENT_CHANGE
+  FETCH_BEGIN,
+  FETCH_SUCCESS,
+  FETCH_FAIL,
+  CONTENT_CHANGE,
+  FETCH_CLEAR
 } from './../constants/action-types'
 
 const initialState = {
   isDialogOpen: false,
   isDrawerOpen: false,
   title: 'Language',
-  collapsed: false
+  collapsed: false,
+  fetchError: false,
+  isFetching: false,
+  contentData: {}
 }
 
 export default (state = initialState, action) => {
@@ -48,9 +55,46 @@ export default (state = initialState, action) => {
         collapsed: !state.collapsed
       }
     case CONTENT_CHANGE:
+      switch (action.payload) {
+        case 'FolkCulture':
+          return {
+            ...state,
+            title: 'Folk Culture'
+          }
+        case 'NatureAndPerspective':
+          return {
+            ...state,
+            title: 'Nature And Perspective'
+          }
+        default:
+          return {
+            ...state,
+            title: action.payload
+          }
+      }
+    case FETCH_BEGIN:
       return {
         ...state,
-        title: action.payload
+        isFetching: true,
+        fetchError: false
+      }
+    case FETCH_FAIL:
+      return {
+        ...state,
+        isFetching: false,
+        fetchError: true
+      }
+    case FETCH_CLEAR:
+      return {
+        ...state,
+        isFetching: false,
+        fetchError: false,
+        data: {}
+      }
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        data: action.payload
       }
     default:
       return state
