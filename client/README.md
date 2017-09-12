@@ -15,3 +15,7 @@ Built using react/redux and Node.js
 build resources page
 build server
 build content page
+
+Things to figure out
+* file uploads
+* 
