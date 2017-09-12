@@ -81,6 +81,10 @@ module.exports = function (proxy, allowedHost) {
       '/api/*': {
         target: 'http://localhost:3001/',
         secure: false
+      },
+      '/content/*': {
+        target: 'http://localhost:3001/',
+        secure: false
       }
     },
     setup (app) {

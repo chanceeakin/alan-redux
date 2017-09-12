@@ -71,7 +71,6 @@ const fetchContent = payload => {
       const api = await fetch(`/api/${payload}`, {
         method: 'GET'
       })
-      console.log(api)
       const json = await api.json()
       await dispatch(successfulRequest(json))
     } catch (err) {
