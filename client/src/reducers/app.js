@@ -19,7 +19,15 @@ const initialState = {
   collapsed: false,
   fetchError: false,
   isFetching: false,
-  contentData: {}
+  contentData: {},
+  contentTitle: '',
+  contentPath: '',
+  contentIFrame: '',
+  contentBackground: '',
+  contentImage: [],
+  contentLink: [],
+  contentEsri: [],
+  contentAudio: []
 }
 
 export default (state = initialState, action) => {
@@ -89,12 +97,20 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: false,
         fetchError: false,
-        data: {}
+        contentData: {}
       }
     case FETCH_SUCCESS:
       return {
         ...state,
-        data: action.payload
+        contentData: action.payload,
+        contentTitle: action.payload.title,
+        contentPath: action.payload.path,
+        contentIFrame: action.payload.iFrame,
+        contentBackground: action.payload.background,
+        contentImage: action.payload.image,
+        contentLink: action.payload.link,
+        contentEsri: action.payload.esri,
+        contentAudio: action.payload.audio
       }
     default:
       return state

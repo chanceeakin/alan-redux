@@ -106,7 +106,14 @@ export default class Home extends Component {
         </Grid>
         <Grid item xs className={classes.calendar}>
           <Paper className={classes.paper}>
-            <iframe src='https://calendar.google.com/calendar/embed?src=alan.cardon%40pfisd.net&amp;ctz=America/Chicago' width={iFrameSize.x} height={iFrameSize.y} frameBorder='0' scrolling='no' style={{border: '0px'}} />
+            <iframe
+              src='https://calendar.google.com/calendar/embed?src=alan.cardon%40pfisd.net&amp;ctz=America/Chicago'
+              width={iFrameSize.x}
+              height={iFrameSize.y}
+              frameBorder='0'
+              scrolling='no'
+              style={{border: '0px'}}
+            />
           </Paper>
         </Grid>
       </Grid>

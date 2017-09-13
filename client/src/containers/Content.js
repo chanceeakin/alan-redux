@@ -15,27 +15,36 @@ import {
   hideDrawer,
   showDrawer
 } from './../actions/app'
+import {
+  homePage,
+  contentPage
+} from './../actions/nav'
 
 const mapStateToProps = state => ({
   isDialogOpen: state.app.isDialogOpen,
   isDrawerOpen: state.app.isDrawerOpen,
-  title: state.app.title
+  title: state.app.title,
+  contentIFrame: state.app.contentIFrame,
+  contentBackground: state.app.contentBackground
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   showDialog,
   hideDialog,
   hideDrawer,
-  showDrawer
+  showDrawer,
+  homePage,
+  contentPage
 }, dispatch)
 
-const styles = theme => ({
+const styles = (theme, props) => ({
   hero: {
     minHeight: '30vh',
     alignItems: 'center',
     justifyContent: 'space-around',
     textAlign: 'center',
     display: 'flex',
+    backgroundSize: '100%',
     flexDirection: 'column'
   },
   header: {
@@ -58,7 +67,30 @@ export default class Home extends Component {
   static displayName = 'Home'
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    homePage: PropTypes.func.isRequired,
+    contentPage: PropTypes.func.isRequired,
+    contentBackground: PropTypes.string.isRequired
+  }
+
+  componentDidMount () {
+    switch (this.props.title) {
+      case '':
+        this.props.homePage()
+        break
+      case undefined:
+        this.props.homePage()
+        break
+      case 'Nature And Perspective':
+        this.props.contentPage('NatureAndPerspective')
+        break
+      case 'Folk Culture':
+        this.props.contentPage('FolkCulture')
+        break
+      default:
+        this.props.contentPage(this.props.title)
+        break
+    }
   }
 
   render () {
@@ -66,13 +98,15 @@ export default class Home extends Component {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
-          <div className={classes.header}>
+          <div style={{backgroundImage: `url(${this.props.contentBackground})`}} className={classes.header}>
             <Typography type='display4' color='secondary'>{this.props.title}</Typography>
           </div>
         </Grid>
         <Grid item xs className={classes.calendar}>
           <Paper className={classes.paper}>
-            <Typography>{this.props.title} is a test!</Typography>
+            <Typography>{this.props.title} is a test!
+            </Typography>
+            <img src={this.props.contentBackground} />
           </Paper>
         </Grid>
       </Grid>

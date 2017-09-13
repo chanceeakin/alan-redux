@@ -1,9 +1,11 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const router = express.Router()
 
 mongoose.connect('mongodb://localhost/alan-react');
 var db = mongoose.connection;
@@ -23,6 +25,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
+const staticHome = path.join(__dirname, '../../../client/build/')
+
+function home (req, res) {
+    console.log("index directory = ", staticHome + 'index.html')
+    res.sendFile(staticHome + 'index.html')
+}
 
 app.get('/syllabus', function (req, res) {
 	var file = './public/content/Files/1st9WeeksSchedule.docx';
@@ -52,8 +60,9 @@ app.get('/api/:path', function (req, res) {
 });
 
 
-app.use(express.static(process.cwd() + './public'));
-app.use(express.static(process.cwd() + './../client/build'));
+app.use(express.static(__dirname + './../client/build'));
+
+router.get('/*', home)
 
 app.listen(PORT, function () {
 	console.log('App listening on PORT: ' + PORT);

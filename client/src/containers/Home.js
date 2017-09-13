@@ -154,7 +154,10 @@ export default class Home extends Component {
                       className={classes.contentText}
                       type='body1'
                     >
-                        Your 2017-2018 Guide to all things AP Human Geography. Follow the links to find study guides, course materials, test and exam preparation, and more. I'm excted to be your guide on this journey that shows us how we arrived where we are today. Human Geography is all around you.
+                      Your 2017-2018 Guide to all things AP Human Geography.
+                      Follow the links to find study guides, course materials, test and exam preparation, and more.
+                      I'm excted to be your guide on this journey that shows us how we arrived where we are today.
+                      Human Geography is all around you.
                     </Typography>
                     <Typography
                       className={classes.contentText}
