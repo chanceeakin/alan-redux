@@ -94,11 +94,12 @@ export default class Home extends Component {
   }
 
   render () {
+    console.log(process.env)
     const {classes} = this.props
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
-          <div style={{backgroundImage: `url(${this.props.contentBackground})`}} className={classes.header}>
+          <div style={{backgroundImage: `url(${process.env.PUBLIC_URL + this.props.contentBackground})`}} className={classes.header}>
             <Typography type='display4' color='secondary'>{this.props.title}</Typography>
           </div>
         </Grid>
