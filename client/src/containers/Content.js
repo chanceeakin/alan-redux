@@ -9,6 +9,8 @@ import Paper from 'material-ui/Paper'
 import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 
+import ContentPics from './../components/ContentPics'
+
 import {
   showDialog,
   hideDialog,
@@ -25,7 +27,8 @@ const mapStateToProps = state => ({
   isDrawerOpen: state.app.isDrawerOpen,
   title: state.app.title,
   contentIFrame: state.app.contentIFrame,
-  contentBackground: state.app.contentBackground
+  contentBackground: state.app.contentBackground,
+  contentImage: state.app.contentImage
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -75,7 +78,8 @@ export default class ContentPage extends Component {
     homePage: PropTypes.func.isRequired,
     contentPage: PropTypes.func.isRequired,
     contentBackground: PropTypes.string.isRequired,
-    contentIFrame: PropTypes.string.isRequired
+    contentIFrame: PropTypes.string.isRequired,
+    contentImage: PropTypes.array.isRequired
   }
 
   componentDidMount () {
@@ -120,9 +124,10 @@ export default class ContentPage extends Component {
         </Grid>
         <Grid item xs className={classes.calendar}>
           <Paper className={classes.paper}>
-            <Typography>{this.props.title} is a test!
-            </Typography>
-            <img src={this.props.contentBackground} />
+            <ContentPics
+              title={this.props.title}
+              image={this.props.contentImage}
+            />
           </Paper>
         </Grid>
       </Grid>

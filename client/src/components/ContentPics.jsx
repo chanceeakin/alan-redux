@@ -1,32 +1,40 @@
-const React = require('react')
-const Masonry = require('react-masonry-component')
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import Masonry from 'react-masonry-component'
+import {withStyles} from 'material-ui/styles'
+import Card, {CardMedia, CardActions} from 'material-ui/Card'
+import Typography from 'material-ui/Typography'
 
-module.exports = React.createClass({
-  getDefaultProps: function () {
-    return {
-      title: 'Content',
-      image: []
-    }
-  },
-  render: function () {
-    var mapPics = this.props.image.map(function (pics) {
-      return (
-        <div className='col s12 m6 l4' key={pics.title}>
-          <div className='masonry-item card z-depth-2'>
-            <div className='content-card card-image hoverable'>
-              <img className='' src={pics.path} />
-            </div>
-            <div className='card-action'>
-              <a href={pics.path}>{pics.title}</a>
-            </div>
-          </div>
-        </div>
-      )
-    })
-    if (this.props) {
+const styles = theme => ({
+
+})
+
+@withStyles(styles)
+export default class ContentPics extends Component {
+  static displayName = 'Content-Pics'
+  static propTypes = {
+    image: PropTypes.array.isRequired,
+    title: PropTypes.string.isRequired
+  }
+  static defaultProps = {
+    title: 'Content',
+    image: []
+  }
+
+  render () {
+    const mapPics = this.props.image.map(pics => (
+      <Card key={pics.title}>
+        <CardMedia
+          image={pics.path} />
+        <CardActions >
+          <a href={pics.path}><Typography>{pics.title}</Typography></a>
+        </CardActions>
+      </Card>
+    ))
+    if (this.props.image && this.props.title) {
       return (
         <div className='row'>
-          <h3 className='center-align'>Pictures for {this.props.title}</h3>
+          <Typography type='display1'>Pictures for {this.props.title}</Typography>
           <Masonry
             className={'my-gallery-class'} // default ''
             elementType={'ul'} // default 'div'
@@ -39,4 +47,4 @@ module.exports = React.createClass({
       )
     }
   }
-})
+}
