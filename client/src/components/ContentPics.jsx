@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import path from 'path'
 import PropTypes from 'prop-types'
 import Masonry from 'react-masonry-component'
 import {withStyles} from 'material-ui/styles'
@@ -22,10 +23,12 @@ export default class ContentPics extends Component {
   }
 
   render () {
+    console.log(process.env)
     const mapPics = this.props.image.map(pics => (
       <Card key={pics.title}>
+        {console.log(pics)}
         <CardMedia
-          image={pics.path} />
+          image={path.join(process.env.PUBLIC_URL + pics.path)} />
         <CardActions >
           <a href={pics.path}><Typography>{pics.title}</Typography></a>
         </CardActions>
