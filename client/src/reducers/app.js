@@ -105,7 +105,7 @@ export default (state = initialState, action) => {
         contentData: action.payload,
         contentTitle: action.payload.title,
         contentPath: action.payload.path,
-        contentIFrame: action.payload.iFrame,
+        contentIFrame: action.payload.video.path,
         contentBackground: action.payload.background,
         contentImage: action.payload.image,
         contentLink: action.payload.link,

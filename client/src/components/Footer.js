@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import {withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
+import SVGIcon from 'material-ui/SvgIcon'
+
+import GithubIcon from './../constants/images/mark-github'
 
 const styles = theme => ({
   root: {
@@ -23,13 +26,19 @@ const styles = theme => ({
   },
   endTag: {
     backgroundColor: theme.palette.primary[700],
-    height: '64px'
+    height: '64px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   endText: {
     lineHeight: '64px',
     color: theme.customColors.footerText,
     textAlign: 'left',
     paddingLeft: '2em'
+  },
+  icon: {
+    alignItems: 'center'
   }
 })
 
@@ -64,6 +73,18 @@ function FooterComponent (props) {
         >
           © 2017 Alan Cardon and Chance Eakin
         </Typography>
+        <SVGIcon className={classes.icon}
+          viewBox='0 -4 24 24'
+          style={{
+            width: '64px',
+            height: '64px'
+          }}
+        >
+          <a href='https://github.com/chanceeakin/alan-redux'
+          >
+            <GithubIcon />
+          </a>
+        </SVGIcon>
       </Grid>
     </Grid>
   )

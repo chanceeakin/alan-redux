@@ -6,7 +6,10 @@ const theme = createMuiTheme({
   palette: {
     primary: blueGrey,
     secondary: lightBlue,
-    type: 'light'
+    type: 'light',
+    text: {
+      secondary: 'rgba(255, 255, 255, 0.8)'
+    }
   },
   customColors: {
     footerText: '#fdfdfd'

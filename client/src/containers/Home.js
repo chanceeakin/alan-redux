@@ -119,7 +119,7 @@ export default class Home extends Component {
   render () {
     const {classes} = this.props
     return (
-      <Grid container className={classes.root}>
+      <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
           <div className={classes.header}>
             <Typography type='display4' color='secondary'>Human Geography</Typography>

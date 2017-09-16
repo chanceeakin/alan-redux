@@ -37,25 +37,29 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   contentPage
 }, dispatch)
 
-const styles = (theme, props) => ({
+const styles = (theme) => ({
   hero: {
-    minHeight: '30vh',
     alignItems: 'center',
     justifyContent: 'space-around',
     textAlign: 'center',
     display: 'flex',
     backgroundSize: '100%',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    minHeight: '100vh',
+    width: '100%'
+  },
+  heroText: {
+    color: theme.palette.text.primary,
+    padding: '0.5em'
   },
   header: {
-    maxHeight: '100vh'
   },
   calendar: {
     margin: '2em'
   },
   paper: {
     background: theme.palette.primary[300],
-    padding: '5em'
+    padding: '2em'
   }
 })
 
@@ -63,14 +67,15 @@ const styles = (theme, props) => ({
 @withTheme
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Home extends Component {
-  static displayName = 'Home'
+export default class ContentPage extends Component {
+  static displayName = 'Content-Page'
   static propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     homePage: PropTypes.func.isRequired,
     contentPage: PropTypes.func.isRequired,
-    contentBackground: PropTypes.string.isRequired
+    contentBackground: PropTypes.string.isRequired,
+    contentIFrame: PropTypes.string.isRequired
   }
 
   componentDidMount () {
@@ -93,15 +98,25 @@ export default class Home extends Component {
     }
   }
 
+  iFrame () {
+    return {
+      __html: this.props.contentIFrame
+    }
+  }
+
   render () {
-    console.log(process.env)
     const {classes} = this.props
     return (
       <Grid container className={classes.root}>
-        <Grid item xs={12} className={classes.hero}>
-          <div style={{backgroundImage: `url(${process.env.PUBLIC_URL + this.props.contentBackground})`}} className={classes.header}>
-            <Typography type='display4' color='secondary'>{this.props.title}</Typography>
-          </div>
+        <Grid
+          item xs={12}
+          className={classes.hero}
+          style={{backgroundImage: `url(${process.env.PUBLIC_URL + this.props.contentBackground})`}}
+        >
+          <Paper className={classes.paper}>
+            <Typography type='display4' color='secondary' className={classes.heroText}>{this.props.title}</Typography>
+            <div className={classes.iframe} dangerouslySetInnerHTML={this.iFrame()} />
+          </Paper>
         </Grid>
         <Grid item xs className={classes.calendar}>
           <Paper className={classes.paper}>
