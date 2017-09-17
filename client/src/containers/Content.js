@@ -56,9 +56,12 @@ const styles = (theme) => ({
     minHeight: '100vh',
     width: '100%'
   },
+  paper: {
+    padding: '2em'
+  },
   heroText: {
     color: theme.palette.text.primary,
-    padding: '0.5em'
+    padding: '0 0.5em 0.5em'
   },
   header: {
   },

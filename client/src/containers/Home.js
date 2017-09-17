@@ -87,7 +87,7 @@ const styles = theme => ({
   },
   icon: {
     padding: '2em',
-    color: theme.palette.text.secondary,
+    color: theme.palette.secondary[700],
     width: '64px',
     height: '64px'
   }

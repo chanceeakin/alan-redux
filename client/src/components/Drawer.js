@@ -21,7 +21,8 @@ const styles = theme => ({
     textAlign: 'center',
     height: '64px',
     lineHeight: '64px',
-    width: '250px'
+    width: '250px',
+    color: theme.palette.text.primary
   }
 })
 
