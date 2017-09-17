@@ -24,7 +24,7 @@ const Routes = ({match, childProps}) => (
       component={Resources}
     />
     <Route
-      path={'/pages/:name'}
+      path={'/:name'}
       component={Content}
     />
   </Switch>

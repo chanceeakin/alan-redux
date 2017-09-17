@@ -38,6 +38,6 @@ export const contentPage = payload => {
       type: PUSH_PAGE
     })
     dispatch(changeContent(payload))
-    dispatch(push(`/pages/${payload}`))
+    dispatch(push(`/${payload}`))
   }
 }

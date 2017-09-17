@@ -26,6 +26,7 @@ const styles = theme => ({
   },
   endTag: {
     backgroundColor: theme.palette.primary[700],
+    marginTop: '2em',
     height: '64px',
     display: 'flex',
     flexDirection: 'row',

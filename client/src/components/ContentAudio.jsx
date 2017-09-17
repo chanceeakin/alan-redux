@@ -1,29 +1,36 @@
-var React = require('react')
+import React from 'react'
+import PropTypes from 'prop-types'
+import Card, { CardContent } from 'material-ui/Card'
+import Typography from 'material-ui/Typography'
+import {withStyles} from 'material-ui/styles'
+import Grid from 'material-ui/Grid'
 
-module.exports = React.createClass({
-  getDefaultProps: function () {
-    return {
-      title: 'Content',
-      audio: []
-    }
-  },
-  render: function () {
-    return (
-      <div className='center-align row container z-depth-2'>
-        <div style={{background: 'white', marginBottom: 0}} className='collection'>
-          <h3>{this.props.title} Audio</h3>
-          {this.props.audio.map(function (audio) {
-            return (
-              <div className='collection-item' key={audio.title}>
-                <h5>{audio.title}</h5>
-                <audio controls>
-                  <source src={audio.path} type='audio/mpeg' />
-                </audio>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    )
+const styles = theme => ({
+  title: {
+    padding: '1em'
   }
 })
+
+function AudioComponent (props) {
+  const {classes} = props
+  return (
+    <Grid item xs={12} md={4} lg={3}>
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography className={classes.title}>{props.audio.title}</Typography>
+          <audio controls>
+            <source src={props.audio.path} type='audio/mpeg' />
+          </audio>
+        </CardContent>
+      </Card>
+    </Grid>
+  )
+}
+
+AudioComponent.displayName = 'Content-Audio'
+AudioComponent.propTypes = {
+  audio: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(AudioComponent)

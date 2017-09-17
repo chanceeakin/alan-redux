@@ -10,6 +10,8 @@ import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 
 import ContentPics from './../components/ContentPics'
+import AudioComponent from './../components/ContentAudio'
+import LinkComponent from './../components/ContentLinks'
 
 import {
   showDialog,
@@ -28,7 +30,10 @@ const mapStateToProps = state => ({
   title: state.app.title,
   contentIFrame: state.app.contentIFrame,
   contentBackground: state.app.contentBackground,
-  contentImage: state.app.contentImage
+  contentImage: state.app.contentImage,
+  contentAudio: state.app.contentAudio,
+  contentEsri: state.app.contentEsri,
+  contentLink: state.app.contentLink
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -57,12 +62,25 @@ const styles = (theme) => ({
   },
   header: {
   },
-  calendar: {
-    margin: '2em'
-  },
-  paper: {
-    background: theme.palette.primary[300],
+  images: {
     padding: '2em'
+  },
+  paperImage: {
+    background: theme.palette.primary[300],
+    padding: '1em'
+  },
+  imageTitle: {
+    paddingBottom: '1em'
+  },
+  audio: {
+    padding: '2em'
+  },
+  paperAudio: {
+    background: theme.palette.primary[700],
+    padding: '1em'
+  },
+  audioTitle: {
+    paddingBottom: '1em'
   }
 })
 
@@ -79,7 +97,10 @@ export default class ContentPage extends Component {
     contentPage: PropTypes.func.isRequired,
     contentBackground: PropTypes.string.isRequired,
     contentIFrame: PropTypes.string.isRequired,
-    contentImage: PropTypes.array.isRequired
+    contentImage: PropTypes.array.isRequired,
+    contentAudio: PropTypes.array.isRequired,
+    contentEsri: PropTypes.array.isRequired,
+    contentLink: PropTypes.array.isRequired
   }
 
   componentDidMount () {
@@ -111,7 +132,7 @@ export default class ContentPage extends Component {
   render () {
     const {classes} = this.props
     return (
-      <Grid container className={classes.root}>
+      <Grid container spacing={0} className={classes.root}>
         <Grid
           item xs={12}
           className={classes.hero}
@@ -122,14 +143,46 @@ export default class ContentPage extends Component {
             <div className={classes.iframe} dangerouslySetInnerHTML={this.iFrame()} />
           </Paper>
         </Grid>
-        <Grid item xs className={classes.calendar}>
-          <Paper className={classes.paper}>
-            <ContentPics
-              title={this.props.title}
-              image={this.props.contentImage}
-            />
+        <Grid item xs={12} className={classes.images}>
+          <Paper className={classes.paperImage}>
+            <Typography type='display1' className={classes.imageTitle}>Pictures for {this.props.title}</Typography>
+            <Grid container>
+              {this.props.contentImage.map((image, i) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={3}
+                  key={i}
+                >
+                  <ContentPics
+                    image={image}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </Paper>
         </Grid>
+        <Grid item xs={12} className={classes.audio}>
+          <Paper className={classes.paperAudio}>
+            <Typography type='display1' className={classes.audioTitle}>Audio for {this.props.title}</Typography>
+            <Grid container>
+              {this.props.contentAudio
+                ? this.props.contentAudio.map(audio => (
+                  <AudioComponent
+                    key={audio.title}
+                    audio={audio}
+                  />
+                ))
+                : null}
+            </Grid>
+          </Paper>
+        </Grid>
+        <LinkComponent
+          title={this.props.title}
+          esri={this.props.contentEsri}
+          links={this.props.contentLink}
+        />
       </Grid>
     )
   }

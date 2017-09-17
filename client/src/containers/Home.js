@@ -122,7 +122,7 @@ export default class Home extends Component {
       <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
           <div className={classes.header}>
-            <Typography type='display4' color='secondary'>Human Geography</Typography>
+            <Typography type='display4' color='inherit'>Human Geography</Typography>
           </div>
           <Button
             raised
