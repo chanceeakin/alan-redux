@@ -27,22 +27,21 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 const staticHome = path.join(__dirname, '../client/build/')
 
 function home (req, res) {
-    console.log("index directory = ", staticHome + 'index.html')
     res.sendFile(staticHome + 'index.html')
 }
 
 app.get('/syllabus', function (req, res) {
-	var file = './public/content/Files/1st9WeeksSchedule.docx';
+	const file = './files/1st9WeeksSchedule.docx';
 	res.download(file); // Set disposition and send it.
 });
 
 app.get('/sq3rAlt', function (req, res) {
-	var file = './public/content/Files/SQ3R-alt.docx';
+	const file = './files/SQ3R-alt.docx';
 	res.download(file);
 });
 
 app.get('/sq3rAdvanced', function (req, res) {
-	var file = './public/content/Files/SQ3RReadingWorksheet-advanced.docx';
+	const file = './files/SQ3RReadingWorksheet-advanced.docx';
 	res.download(file);
 });
 
@@ -53,11 +52,9 @@ app.get('/api/:path', function (req, res) {
 			logger.log(err);
 			res.status(400).send(err);
 		}
-		console.log(resp);
 		res.status(200).send(resp);
 	});
 });
-
 
 app.use(express.static(staticHome));
 

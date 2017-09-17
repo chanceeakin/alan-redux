@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 import {withRouter} from 'react-router'
 
 import Grid from 'material-ui/Grid'
-import Paper from 'material-ui/Paper'
 import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
+import Button from 'material-ui/Button'
 
 import {
   showDialog,
@@ -30,18 +30,15 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 const styles = theme => ({
   hero: {
-    minHeight: '30vh',
+    minHeight: '100vh',
     alignItems: 'center',
     justifyContent: 'space-around',
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column'
   },
-  header: {
-    maxHeight: '100vh'
-  },
-  calendar: {
-    margin: '2em'
+  title: {
+    color: theme.palette.text.primary
   },
   paper: {
     background: theme.palette.primary[300],
@@ -65,13 +62,21 @@ export default class Home extends Component {
       <Grid container className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
           <div className={classes.header}>
-            <Typography type='display4' color='secondary'>Resources</Typography>
+            <Typography
+              type='display4'
+              className={classes.title}
+            >
+              Resources
+            </Typography>
           </div>
-        </Grid>
-        <Grid item xs className={classes.calendar}>
-          <Paper className={classes.paper}>
-            <Typography>Downloads</Typography>
-          </Paper>
+          <Button
+            href='https://drive.google.com/open?id=0B-4Lkr3x2FheaVNtZjQ3UDYxYTA'
+            raised
+            color='primary'
+          >
+            Google Drive
+          </Button>
+          <Typography className={classes.title} type='display1'>More Coming Soon...</Typography>
         </Grid>
       </Grid>
     )
