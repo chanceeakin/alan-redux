@@ -76,6 +76,20 @@ export default class Home extends Component {
           >
             Google Drive
           </Button>
+          <Button
+            href='/downloads/sq3rAlt'
+            raised
+            color='primary'
+          >
+            Reading Worksheet
+          </Button>
+          <Button
+            href='/downloads/sq3rAdvanced'
+            raised
+            color='primary'
+          >
+            Advanced Reading Worksheet
+          </Button>
           <Typography className={classes.title} type='display1'>More Coming Soon...</Typography>
         </Grid>
       </Grid>

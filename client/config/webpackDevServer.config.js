@@ -82,7 +82,7 @@ module.exports = function (proxy, allowedHost) {
         target: 'http://localhost:3001/',
         secure: false
       },
-      '/content/*': {
+      '/downloads/*': {
         target: 'http://localhost:3001/',
         secure: false
       }

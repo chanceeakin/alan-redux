@@ -30,17 +30,18 @@ function home (req, res) {
     res.sendFile(staticHome + 'index.html')
 }
 
-app.get('/syllabus', function (req, res) {
-	const file = './files/1st9WeeksSchedule.docx';
-	res.download(file); // Set disposition and send it.
-});
+// app.get('/downloads/syllabus', function (req, res) {
+// 	const file = './files/1st9WeeksSchedule.docx';
+// 	res.download(file); // Set disposition and send it.
+// });
 
-app.get('/sq3rAlt', function (req, res) {
+app.get('/downloads/sq3rAlt', function (req, res) {
+	console.log('heyh');
 	const file = './files/SQ3R-alt.docx';
-	res.download(file);
+	res.status(200).download(file);
 });
 
-app.get('/sq3rAdvanced', function (req, res) {
+app.get('/downloads/sq3rAdvanced', function (req, res) {
 	const file = './files/SQ3RReadingWorksheet-advanced.docx';
 	res.download(file);
 });
@@ -58,7 +59,7 @@ app.get('/api/:path', function (req, res) {
 
 app.use(express.static(staticHome));
 
-app.get('/*', home)
+app.get('*', home)
 
 app.listen(PORT, function () {
 	console.log('App listening on PORT: ' + PORT);
