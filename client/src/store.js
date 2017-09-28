@@ -5,7 +5,6 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducer'
 
 // Logger with default options
-import logger from 'redux-logger'
 
 export const history = createHistory()
 
@@ -22,10 +21,13 @@ if (process.env.NODE_ENV === 'development') {
   if (typeof devToolsExtension === 'function') {
     enhancers.push(devToolsExtension())
   }
+  const { logger } = require(`redux-logger`)
+
+  middleware.push(logger)
 }
 
 const composedEnhancers = compose(
-  applyMiddleware(...middleware, logger),
+  applyMiddleware(...middleware),
   ...enhancers
 )
 
