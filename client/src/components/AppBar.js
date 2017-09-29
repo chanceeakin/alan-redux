@@ -18,7 +18,7 @@ function AppBarComponent (props) {
         <IconButton
           color='contrast'
           aria-label='Menu'
-          onTouchTap={props.showDrawer}
+          onClick={props.showDrawer}
         >
           <MenuIcon />
         </IconButton>
