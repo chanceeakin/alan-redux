@@ -79,11 +79,11 @@ module.exports = function (proxy, allowedHost) {
     public: allowedHost,
     proxy: {
       '/api/*': {
-        target: 'http://localhost:3001/',
+        target: 'http://localhost:3017/',
         secure: false
       },
       '/downloads/*': {
-        target: 'http://localhost:3001/',
+        target: 'http://localhost:3017/',
         secure: false
       }
     },

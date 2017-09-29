@@ -67,7 +67,7 @@ export default class Home extends Component {
     switch (this.props.width) {
       case 'xs':
         iFrameSize = {
-          x: 300,
+          x: 250,
           y: 200
         }
         break

@@ -4,7 +4,7 @@ const path = require('path');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3017;
 
 mongoose.connect('mongodb://localhost/alan-react');
 var db = mongoose.connection;

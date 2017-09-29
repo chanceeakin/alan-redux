@@ -8,6 +8,7 @@ import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
+import withWidth from 'material-ui/utils/withWidth'
 
 import ContentPics from './../components/ContentPics'
 import AudioComponent from './../components/ContentAudio'
@@ -87,6 +88,7 @@ const styles = (theme) => ({
   }
 })
 
+@withWidth()
 @withStyles(styles)
 @withTheme
 @withRouter
@@ -103,7 +105,8 @@ export default class ContentPage extends Component {
     contentImage: PropTypes.array.isRequired,
     contentAudio: PropTypes.array.isRequired,
     contentEsri: PropTypes.array.isRequired,
-    contentLink: PropTypes.array.isRequired
+    contentLink: PropTypes.array.isRequired,
+    width: PropTypes.string.isRequired
   }
 
   componentDidMount () {
@@ -133,6 +136,39 @@ export default class ContentPage extends Component {
   }
 
   render () {
+    let iFrameSize
+    switch (this.props.width) {
+      case 'xs':
+        iFrameSize = {
+          x: 250,
+          y: 200
+        }
+        break
+      case 'sm':
+        iFrameSize = {
+          x: 450,
+          y: 300
+        }
+        break
+      case 'md':
+        iFrameSize = {
+          x: 600,
+          y: 400
+        }
+        break
+      case 'lg':
+        iFrameSize = {
+          x: 800,
+          y: 600
+        }
+        break
+      case 'xl':
+        iFrameSize = {
+          x: 1000,
+          y: 800
+        }
+        break
+    }
     const {classes} = this.props
     return (
       <Grid container spacing={0} className={classes.root}>
@@ -142,8 +178,20 @@ export default class ContentPage extends Component {
           style={{backgroundImage: `url(${process.env.PUBLIC_URL + this.props.contentBackground})`}}
         >
           <Paper className={classes.paper}>
-            <Typography type='display4' color='secondary' className={classes.heroText}>{this.props.title}</Typography>
-            <div className={classes.iframe} dangerouslySetInnerHTML={this.iFrame()} />
+            <Typography
+              type='display4'
+              color='secondary'
+              className={classes.heroText}>
+              {this.props.title}
+            </Typography>
+            <div
+              className={classes.iframe}
+              dangerouslySetInnerHTML={this.iFrame()}
+              style={{
+                width: iFrameSize.x,
+                height: iFrameSize.y
+              }}
+            />
           </Paper>
         </Grid>
         <Grid item xs={12} className={classes.images}>
