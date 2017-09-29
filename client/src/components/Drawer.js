@@ -33,7 +33,6 @@ function DrawerComponent (props) {
       className={classes.root}
       open={props.open}
       onRequestClose={props.handleClose}
-      onClick={props.handleClose}
     >
       <Typography className={classes.header} type='display1'>Menu</Typography>
       <Divider />

@@ -15,6 +15,8 @@ import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Card, {CardContent, CardActions} from 'material-ui/Card'
 import Button from 'material-ui/Button'
+import withWidth from 'material-ui/utils/withWidth'
+
 import Camels from './../constants/images/camels.jpg'
 
 import {
@@ -71,7 +73,8 @@ const styles = theme => ({
   actionHeader: {
     padding: '1em'
   },
-  element: {
+  title: {
+    color: theme.palette.text.primary
   },
   card: theme.card,
   tripleCard: {
@@ -94,14 +97,15 @@ const styles = theme => ({
 })
 
 @withStyles(styles)
+@withWidth()
 @withTheme
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
   static displayName = 'Home'
   static propTypes = {
-    classes: PropTypes.object.isRequired
-    // showDialog: PropTypes.func.isRequired
+    classes: PropTypes.object.isRequired,
+    width: PropTypes.string.isRequired
   }
 
   componentDidMount () {
@@ -122,7 +126,21 @@ export default class Home extends Component {
       <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
           <div className={classes.header}>
-            <Typography type='display4' color='inherit'>Human Geography</Typography>
+            {this.props.width === 'xs' || this.props.width === 'sm' ? (
+              <Typography
+                type='display2'
+                className={classes.title}
+              >
+                Human Geography
+              </Typography>
+            ) : (
+              <Typography
+                type='display4'
+                className={classes.title}
+              >
+                Human Geography
+              </Typography>
+            )}
           </div>
           <Button
             raised

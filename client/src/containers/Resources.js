@@ -8,6 +8,7 @@ import Grid from 'material-ui/Grid'
 import {withTheme, withStyles} from 'material-ui/styles'
 import Typography from 'material-ui/Typography'
 import Button from 'material-ui/Button'
+import withWidth from 'material-ui/utils/withWidth'
 
 import {
   showDialog,
@@ -47,27 +48,38 @@ const styles = theme => ({
 })
 
 @withStyles(styles)
+@withWidth()
 @withTheme
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
   static displayName = 'Home'
   static propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    width: PropTypes.string.isRequired
   }
 
   render () {
     const {classes} = this.props
     return (
-      <Grid container className={classes.root}>
+      <Grid container spacing={0} className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
           <div className={classes.header}>
-            <Typography
-              type='display4'
-              className={classes.title}
-            >
-              Resources
-            </Typography>
+            {this.props.width === 'xs' || this.props.width === 'sm' ? (
+              <Typography
+                type='display2'
+                className={classes.title}
+              >
+                Resources
+              </Typography>
+            ) : (
+              <Typography
+                type='display4'
+                className={classes.title}
+              >
+                Resources
+              </Typography>
+            )}
           </div>
           <Button
             href='https://drive.google.com/open?id=0B-4Lkr3x2FheaVNtZjQ3UDYxYTA'

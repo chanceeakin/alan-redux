@@ -41,12 +41,15 @@ const styles = theme => ({
   header: {
     maxHeight: '100vh'
   },
+  title: {
+    color: theme.palette.text.primary
+  },
   calendar: {
     margin: '2em'
   },
   paper: {
     background: theme.palette.primary[300],
-    padding: '5em'
+    padding: '2em'
   }
 })
 
@@ -100,9 +103,21 @@ export default class Home extends Component {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={12} className={classes.hero}>
-          <div className={classes.header}>
-            <Typography type='display4' color='secondary'>Calendar</Typography>
-          </div>
+          {this.props.width === 'xs' || this.props.width === 'sm' ? (
+            <Typography
+              type='display2'
+              className={classes.title}
+            >
+              Calendar
+            </Typography>
+          ) : (
+            <Typography
+              type='display4'
+              className={classes.title}
+            >
+              Calendar
+            </Typography>
+          )}
         </Grid>
         <Grid item xs className={classes.calendar}>
           <Paper className={classes.paper}>

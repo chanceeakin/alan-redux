@@ -178,12 +178,22 @@ export default class ContentPage extends Component {
           style={{backgroundImage: `url(${process.env.PUBLIC_URL + this.props.contentBackground})`}}
         >
           <Paper className={classes.paper}>
-            <Typography
-              type='display4'
-              color='secondary'
-              className={classes.heroText}>
-              {this.props.title}
-            </Typography>
+            {this.props.width === 'xs' || this.props.width === 'sm' ? (
+              <Typography
+                type='display2'
+                color='secondary'
+                className={classes.heroText}>
+                {this.props.title}
+              </Typography>
+            ) : (
+              <Typography
+                type='display4'
+                color='secondary'
+                className={classes.heroText}>
+                {this.props.title}
+              </Typography>
+            )}
+
             <div
               className={classes.iframe}
               dangerouslySetInnerHTML={this.iFrame()}
