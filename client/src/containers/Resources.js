@@ -96,6 +96,13 @@ export default class Home extends Component {
             Reading Worksheet
           </Button>
           <Button
+            href='/downloads/syllabus'
+            raised
+            color='primary'
+          >
+            Syllabus
+          </Button>
+          <Button
             href='/downloads/sq3rAdvanced'
             raised
             color='primary'

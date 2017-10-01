@@ -30,20 +30,19 @@ function home (req, res) {
     res.sendFile(staticHome + 'index.html')
 }
 
-// app.get('/downloads/syllabus', function (req, res) {
-// 	const file = './files/1st9WeeksSchedule.docx';
-// 	res.download(file); // Set disposition and send it.
-// });
+app.get('/downloads/syllabus', function (req, res) {
+	const file = './files/student-syllabus-2017-2018.pdf';
+	res.status(200).download(file); // Set disposition and send it.
+});
 
 app.get('/downloads/sq3rAlt', function (req, res) {
-	console.log('heyh');
 	const file = './files/SQ3R-alt.docx';
 	res.status(200).download(file);
 });
 
 app.get('/downloads/sq3rAdvanced', function (req, res) {
 	const file = './files/SQ3RReadingWorksheet-advanced.docx';
-	res.download(file);
+	res.status(200).download(file);
 });
 
 // take incoming requests. send data.

@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography'
 import Dialog, {
   DialogTitle
 } from 'material-ui/Dialog'
+import withWidth from 'material-ui/utils/withWidth'
 
 import {
   showDialog,
@@ -79,6 +80,7 @@ const styles = theme => ({
 @withStyles(styles)
 @withTheme
 @withRouter
+@withWidth()
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
   static displayName = 'App'
@@ -94,7 +96,8 @@ export default class App extends Component {
     resourcePage: PropTypes.func.isRequired,
     toggleCollapse: PropTypes.func.isRequired,
     collapsed: PropTypes.bool.isRequired,
-    contentPage: PropTypes.func.isRequired
+    contentPage: PropTypes.func.isRequired,
+    width: PropTypes.string.isRequired
   }
 
   render () {
@@ -125,7 +128,9 @@ export default class App extends Component {
         <div className={classes.container}>
           <Routes />
         </div>
-        <Footer />
+        <Footer
+          width={this.props.width}
+        />
       </div>
     )
   }

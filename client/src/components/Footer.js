@@ -68,12 +68,22 @@ function FooterComponent (props) {
         </Typography>
       </Grid>
       <Grid xs={12} item className={classes.endTag}>
-        <Typography
-          type='headline'
-          className={classes.endText}
-        >
-          © 2017 Alan Cardon and Chance Eakin
-        </Typography>
+        {props.width === 'xs' || props.width === 'sm' ? (
+          <Typography
+            type='subheading'
+            className={classes.endText}
+          >
+            © 2017 Alan Cardon and Chance Eakin
+          </Typography>
+        )
+          : (
+            <Typography
+              type='headline'
+              className={classes.endText}
+            >
+            © 2017 Alan Cardon and Chance Eakin
+            </Typography>
+          )}
         <SVGIcon className={classes.icon}
           viewBox='0 -4 24 24'
           style={{
@@ -93,7 +103,8 @@ function FooterComponent (props) {
 
 FooterComponent.displayName = 'Footer-Component'
 FooterComponent.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  width: PropTypes.string.isRequired
 }
 
 export default withStyles(styles)(FooterComponent)

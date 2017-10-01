@@ -181,9 +181,18 @@ export default class Home extends Component {
                       className={classes.contentText}
                       type='body1'
                     >
-                        If you have any questions, please email me.
+                      If you have any questions, please email me.
                     </Typography>
-                    <iframe src='https://www.youtube.com/embed/naK9_JkFAOk' frameBorder='0' allowFullScreen='' />
+                    {this.props.width === 'xs' || this.props.width === 'sm' ? (
+                      <Button
+                        href='https://www.youtube.com/watch?v=naK9_JkFAOk'
+                        raised
+                      >
+                        Opening Video
+                      </Button>
+                    ) : (
+                      <iframe src='https://www.youtube.com/embed/naK9_JkFAOk' frameBorder='0' allowFullScreen='' />
+                    )}
                   </CardContent>
                 </Card>
               </Grid>
