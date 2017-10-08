@@ -9,13 +9,6 @@ import {
 } from 'material-ui/styles'
 import App from './containers/App'
 import theme from './theme'
-import ReactGA from 'react-ga'
-ReactGA.initialize('UA-86915404-4')
-
-function logPageView () {
-  ReactGA.set({ page: window.location.pathname })
-  ReactGA.pageview(window.location.pathname)
-}
 
 const target = document.querySelector('#root')
 
@@ -25,7 +18,6 @@ render(
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
       <ConnectedRouter
-        onUpdate={logPageView}
         history={history}
       >
         <App />

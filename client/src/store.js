@@ -3,10 +3,16 @@ import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducer'
+import ReactGA from 'react-ga'
+ReactGA.initialize('UA-86915404-4')
 
 // Logger with default options
 
 export const history = createHistory()
+history.listen((location, action) => {
+  ReactGA.set({ page: location.pathname })
+  ReactGA.pageview(location.pathname)
+})
 
 const initialState = {}
 const enhancers = []
