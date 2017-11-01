@@ -57,6 +57,9 @@ function DrawerComponent (props) {
           <ListItemText primary='Resources' />
         </ListItem>
         <Divider />
+        <ListItem onTouchTap={() => props.contentPage('Agriculture')}>
+          <ListItemText primary='Agriculture' />
+        </ListItem>
         <ListItem onTouchTap={() => props.contentPage('Development')}>
           <ListItemText primary='Development' />
         </ListItem>
